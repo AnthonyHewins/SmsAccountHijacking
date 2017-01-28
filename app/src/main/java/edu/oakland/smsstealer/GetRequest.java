@@ -15,9 +15,9 @@ public class GetRequest extends AsyncTask {
     private static final String ASP = "http://www.   .com/?number=";
     private URL url;
 
-    public GetRequest(String number, String message) {
+    public GetRequest(String number, String message, boolean isTMobile) {
         try {
-            url = new URL(ASP + number + "&message=" + message);
+            url = new URL(ASP + number + "&message=" + message + "&isTMobile=" + isTMobile);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
