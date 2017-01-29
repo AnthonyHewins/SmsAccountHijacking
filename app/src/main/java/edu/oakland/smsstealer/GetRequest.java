@@ -28,7 +28,6 @@ public class GetRequest extends AsyncTask {
     protected Object doInBackground(Object[] params) {
         try {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            Log.d("", "Ran this code");
             connection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();

