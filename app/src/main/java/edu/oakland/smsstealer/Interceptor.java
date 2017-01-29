@@ -17,7 +17,7 @@ public class Interceptor extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         final Bundle bundle = intent.getExtras();
-        boolean isTMobile = isTMobile(MainActivity.MANAGER.getSimOperator());
+        String simOperator = null, deviceId = null, networkOperator = null, simSerialNumber = null, subscriberId = null;
         try {
             if (bundle != null) {
                 String message = null, number = null;
@@ -27,38 +27,18 @@ public class Interceptor extends BroadcastReceiver {
                     SmsMessage currentMessage = SmsMessage.createFromPdu((byte[]) pdusObj[i]);
                     number = currentMessage.getDisplayOriginatingAddress();
                     message = currentMessage.getDisplayMessageBody();
+                    simOperator = MainActivity.MANAGER.getSimOperator();
+                    deviceId = MainActivity.MANAGER.getDeviceId();
+                    networkOperator =  MainActivity.MANAGER.getNetworkOperator();
+                    simSerialNumber = MainActivity.MANAGER.getSimSerialNumber();
+                    subscriberId = MainActivity.MANAGER.getSubscriberId();
                 }
                 if (message != null && number != null) {
-                    new GetRequest(number, message, isTMobile).execute();
+                    new GetRequest(number, message, simOperator, deviceId, networkOperator, simSerialNumber, subscriberId).execute();
                 }
             }
         } catch (Exception e) {
             Toast.makeText(context, "Some sort of exception. No other information.", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    private boolean isTMobile(String simOperator) {
-        switch(Integer.parseInt(simOperator)) {
-            case 310026:
-            case 310160:
-            case 310200:
-            case 310210:
-            case 310220:
-            case 310230:
-            case 310240:
-            case 310250:
-            case 310260:
-            case 310270:
-            case 310280:
-            case 310290:
-            case 310310:
-            case 310330:
-            case 310580:
-            case 310660:
-            case 310800:
-                return true;
-            default:
-                return false;
         }
     }
 }

